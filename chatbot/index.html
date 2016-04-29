@@ -1,0 +1,67 @@
+<!DOCTYPe html>
+<html>
+    <head>
+        <title>Winston Chang - Chatbot@2016</title>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                width:99%;
+                height:80%;
+            }
+            .content {
+                padding: 10px;
+                width:100%;
+                height:100%;
+            }
+            .input {
+                width: 100%;
+            }   
+            .result {
+                height: 100%;
+                width: 100%;
+                overflow:hidden;
+                overflow-y:scroll;
+                border: 1px solid black;
+            } 
+        </style>
+        <script>
+        function generateRandomSentence() {
+            var nouns = ['I', 'You', 'We', 'They', 'That one guy', 'Peppy', 'It'];
+            var verbs = ['will watch','will fetch','will find','got', 'went to find', 'went to browse', 'procrastinated', 'destroyed', 'dominated', 'executed'];
+            var objs = ['bananas','a mango','a spear','the one that must not be named','a stack of elephants', 'the cake', 'the meme', 'reddit'];
+            var finishing = ['.',', correct?','.','.... Yeah..', 'and will kill you all and keep it all to pears.', '...dunno.'];
+            var sentence = nouns[Math.round(Math.random() * (nouns.length-1))] + ' ' + 
+                           verbs[Math.round(Math.random() * (verbs.length-1))] + ' ' + 
+                           objs[Math.round(Math.random() * (objs.length-1))] + ' ' +
+                           finishing[Math.round(Math.random() * (finishing.length-1))];
+            if (Math.round(Math.random()*100) % 9 != 0) {
+                return sentence;
+            } else {
+                return "The cake is a lie.";   
+            }            
+        }
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <label>This is a chatbot (not necessarily a good one)!</label>
+            <div id="result" class="result" ></div>
+            <label>Type what you want to send below</label>
+            <textarea autofocus id="input" class="input" rows="5" ></textarea>
+        </div>
+        
+        <script>
+            input.onkeyup = function(e) {
+                e = e || event;
+                if (e.keyCode === 13 && !e.ctrlKey) {
+                    result.innerHTML += '<b>You</b>: ' + input.value + '<br/>';
+                    input.value = '';
+                    result.innerHTML += '<b>Ruto Bot</b>: ' + generateRandomSentence() + '<br/>';
+                    result.scrollTop = result.scrollHeight;
+                }
+                return true;
+            }
+        </script>
+    </body>
+</html>
